@@ -17,33 +17,24 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 
     @IBOutlet weak var timePicker: UIPickerView!
     @IBAction func doneButton(_ sender: Any) {
-
+        total()
+        if timeTotal == 0{return}else {
         let storyboard: UIStoryboard = self.storyboard!
         let timer = storyboard.instantiateViewController(withIdentifier: "timer") as! TimerViewController
 
         timer.getTime = timeTotal
 
         self.present(timer, animated: true, completion: nil)
-    }
+        }}
 
-    @IBAction func button(_ sender: Any) {
-       total()
-    }
+
 
   
     override func viewDidLoad() {
         super.viewDidLoad()
         // 日付フォーマット
-        
-        
-        
-        
         timePicker.dataSource = self
         timePicker.delegate = self
-       
-       
-       
-       
     }
   
  
