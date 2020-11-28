@@ -18,7 +18,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var timePicker: UIPickerView!
     @IBAction func doneButton(_ sender: Any) {
         total()
-        if timeTotal == 0{return}else {
+        if timeTotal == 0{return}else if timeTotal > 0 {
         let storyboard: UIStoryboard = self.storyboard!
         let timer = storyboard.instantiateViewController(withIdentifier: "timer") as! TimerViewController
 

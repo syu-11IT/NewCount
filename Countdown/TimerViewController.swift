@@ -14,7 +14,8 @@ class TimerViewController: UIViewController , UIPickerViewDelegate{
         var count = 0
         var getTime:Int!
     var label2:String!
-
+    
+    
     @IBOutlet weak var timePicker: UIPickerView!
         @IBOutlet weak var timerLabel: UILabel!
 
@@ -22,7 +23,7 @@ class TimerViewController: UIViewController , UIPickerViewDelegate{
          //タイマーが有効なら　何もしない
          if timer.isValid == true {
                     return
-            }else if count == getTime!{
+            }else if count == getTime ?? 0{
                 return
          
             }
@@ -33,9 +34,10 @@ class TimerViewController: UIViewController , UIPickerViewDelegate{
             // ローカル通知の内容
             let content = UNMutableNotificationContent()
             content.sound = UNNotificationSound.default
-            content.title = "ローカル通知テスト"
-            content.subtitle = "タイマー通知"
-            content.body = "タイマーによるローカル通知です"
+            content.title = "Countdown"
+            content.subtitle = "タイマー"
+            content.body = "設定したタイマーが終了しました"
+            content.sound = UNNotificationSound(named:UNNotificationSoundName(rawValue: "gageup2.wav"))
 
             // タイマーの時間（秒）をセット
             let timer = TimeInterval(getTime! - count)
@@ -67,16 +69,12 @@ class TimerViewController: UIViewController , UIPickerViewDelegate{
             UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                 timer.invalidate()
             count = 0
-            timerLabel.text = timeString(time: TimeInterval(getTime))
+            timerLabel.text = timeString(time: TimeInterval(getTime ?? 0))
 
         }
 
         @IBAction func backButton(_ sender: Any) {
-
-            let storyboard: UIStoryboard = self.storyboard!
-            let picikerboard = storyboard.instantiateViewController(withIdentifier: "pickerboard") as! ViewController
-
-            self.present(picikerboard, animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
 
         // カウントダウンをする関数
@@ -95,6 +93,9 @@ class TimerViewController: UIViewController , UIPickerViewDelegate{
                        alert.addAction(
                        UIAlertAction(
                            title: "OK",style: .default,handler: {action in print("e")}))
+                       alert.addAction(
+                        UIAlertAction(
+                            title:"NO",style: .cancel,handler: {action in print("o")}))
                        present(alert, animated: true, completion: nil)
                    }
                    
@@ -131,11 +132,11 @@ class TimerViewController: UIViewController , UIPickerViewDelegate{
         }
    
             
-            
+        
 
         override func viewDidAppear(_ animated: Bool) {
 
-            timerLabel.text = timeString(time: TimeInterval(getTime))
+            timerLabel.text = timeString(time: TimeInterval(getTime ?? 0))
             print(getTime ?? "this is nil")
 
         }

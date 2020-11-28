@@ -14,6 +14,8 @@
 		73C628FE24D077B700EF736B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73C628FD24D077B700EF736B /* Assets.xcassets */; };
 		73C6290124D077B700EF736B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73C628FF24D077B700EF736B /* LaunchScreen.storyboard */; };
 		73C6290924D07A8B00EF736B /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C6290824D07A8B00EF736B /* TimerViewController.swift */; };
+		73E212452572641200D9AC7E /* gageup2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 73E212442572641200D9AC7E /* gageup2.mp3 */; };
+		73E212482572668800D9AC7E /* gageup2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 73E212472572668800D9AC7E /* gageup2.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		73C6290024D077B700EF736B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73C6290224D077B700EF736B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73C6290824D07A8B00EF736B /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		73E212442572641200D9AC7E /* gageup2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gageup2.mp3; sourceTree = "<group>"; };
+		73E212472572668800D9AC7E /* gageup2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gageup2.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +70,19 @@
 				73C628FD24D077B700EF736B /* Assets.xcassets */,
 				73C628FF24D077B700EF736B /* LaunchScreen.storyboard */,
 				73C6290224D077B700EF736B /* Info.plist */,
+				73E212432572641200D9AC7E /* 音声 */,
 			);
 			path = Countdown;
+			sourceTree = "<group>";
+		};
+		73E212432572641200D9AC7E /* 音声 */ = {
+			isa = PBXGroup;
+			children = (
+				73E212472572668800D9AC7E /* gageup2.wav */,
+				73E212442572641200D9AC7E /* gageup2.mp3 */,
+			);
+			name = "音声";
+			path = "../../音声";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +143,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73E212482572668800D9AC7E /* gageup2.wav in Resources */,
+				73E212452572641200D9AC7E /* gageup2.mp3 in Resources */,
 				73C6290124D077B700EF736B /* LaunchScreen.storyboard in Resources */,
 				73C628FE24D077B700EF736B /* Assets.xcassets in Resources */,
 				73C628FC24D077B300EF736B /* Main.storyboard in Resources */,
