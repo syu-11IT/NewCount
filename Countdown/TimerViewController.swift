@@ -8,7 +8,7 @@
 
 import UIKit
 class TimerViewController: UIViewController , UIPickerViewDelegate{
-    
+    var backgroundTaskID : UIBackgroundTaskIdentifier = 1
     let dateFormatter = DateFormatter()
         var timer = Timer()
         var count = 0
@@ -20,6 +20,8 @@ class TimerViewController: UIViewController , UIPickerViewDelegate{
         @IBOutlet weak var timerLabel: UILabel!
 
         @IBAction func StartButton(_ sender: Any) {
+            self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
+                self.longTimeFunction()
          //タイマーが有効なら　何もしない
          if timer.isValid == true {
                     return
@@ -81,7 +83,7 @@ class TimerViewController: UIViewController , UIPickerViewDelegate{
         @objc func updateTimer() -> Int {
 
             count += 1
-            
+            print(count)
             //時間　＝　pickerで設定する時間　ー　count
             let remainCount = getTime! - count
             timerLabel.text = timeString(time: TimeInterval(remainCount))
@@ -109,8 +111,14 @@ class TimerViewController: UIViewController , UIPickerViewDelegate{
         //タイマーを動かす関数
         func runTimer() {
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
+            
         }
 
+        func longTimeFunction() {
+        // 長い時間かかる処理
+        // 処理が終わったらコレを書く
+        UIApplication.shared.endBackgroundTask(self.backgroundTaskID)
+      }
         //00:00:00に変える処理
           func timeString(time: TimeInterval) -> String {
               let hour = Int(time) / 3600
