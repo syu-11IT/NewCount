@@ -7,8 +7,8 @@
 //
 
 import UIKit
-class TimerViewController: UIViewController , UIPickerViewDelegate{
-    var backgroundTaskID : UIBackgroundTaskIdentifier = 1
+class TimerViewController: UIViewController , UIPickerViewDelegate, {
+    var backgroundTaskID : UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 0)
     let dateFormatter = DateFormatter()
         var timer = Timer()
         var count = 0
@@ -20,8 +20,7 @@ class TimerViewController: UIViewController , UIPickerViewDelegate{
         @IBOutlet weak var timerLabel: UILabel!
 
         @IBAction func StartButton(_ sender: Any) {
-            self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
-                self.longTimeFunction()
+           
          //タイマーが有効なら　何もしない
          if timer.isValid == true {
                     return
@@ -94,10 +93,16 @@ class TimerViewController: UIViewController , UIPickerViewDelegate{
                        let alert: UIAlertController = UIAlertController(title: "時間終了！",message: "お疲れ様でした",preferredStyle: .alert)
                        alert.addAction(
                        UIAlertAction(
-                           title: "OK",style: .default,handler: {action in print("e")}))
+                        title: "OK",style: .default,handler: {(action: UIAlertAction!) in //アラートが消えるのと画面遷移が重ならないように0.5秒後に画面遷移するようにしてる
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                             // 0.5秒後に実行したい処理
+                                let storyboard: UIStoryboard = self.storyboard!
+                                let nextView = storyboard.instantiateViewController(withIdentifier: "Evaluation")
+                                self.present(nextView, animated: true, completion: nil)
+                             }}))
                        alert.addAction(
                         UIAlertAction(
-                            title:"NO",style: .cancel,handler: {action in print("o")}))
+                            title:"NO",style: .cancel,handler: {action in print("Cancel")}))
                        present(alert, animated: true, completion: nil)
                    }
                    
@@ -114,11 +119,7 @@ class TimerViewController: UIViewController , UIPickerViewDelegate{
             
         }
 
-        func longTimeFunction() {
-        // 長い時間かかる処理
-        // 処理が終わったらコレを書く
-        UIApplication.shared.endBackgroundTask(self.backgroundTaskID)
-      }
+   
         //00:00:00に変える処理
           func timeString(time: TimeInterval) -> String {
               let hour = Int(time) / 3600

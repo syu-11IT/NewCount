@@ -8,7 +8,7 @@
 
 import UIKit
 import UserNotifications
-class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, backgroundTimerDelegate {
 
     let timeList = [[Int](0...23), [Int](0...59), [Int](0...59)]
     let dateFormatter = DateFormatter()
@@ -35,6 +35,12 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         // 日付フォーマット
         timePicker.dataSource = self
         timePicker.delegate = self
+        //SceneDelegateを取得
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let sceneDelegate = windowScene.delegate as? SceneDelegate else {
+                    return
+        }
+                sceneDelegate.delegate = self
     }
   
  

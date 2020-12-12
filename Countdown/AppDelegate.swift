@@ -14,6 +14,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var backgroundTaskID : UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 0)
     
+  
+
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // 通知許可の取得
+        UNUserNotificationCenter.current().requestAuthorization(
+        options: [.alert, .sound, .badge]){
+            (granted, _) in
+            if granted{
+                UNUserNotificationCenter.current().delegate = self
+            }
+        }
+        // Override point for customization after application launch.
+        return true
+    }
     //バックグラウンド遷移移行直前に呼ばれる
     func applicationWillResignActive(_ application: UIApplication) {
 
@@ -29,21 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         application.endBackgroundTask(self.backgroundTaskID)
     }
-
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // 通知許可の取得
-        UNUserNotificationCenter.current().requestAuthorization(
-        options: [.alert, .sound, .badge]){
-            (granted, _) in
-            if granted{
-                UNUserNotificationCenter.current().delegate = self
-            }
-        }
-        // Override point for customization after application launch.
-        return true
-    }
-
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
