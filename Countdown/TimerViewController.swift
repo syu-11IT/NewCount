@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class TimerViewController: UIViewController , UIPickerViewDelegate, {
+class TimerViewController: UIViewController, UIPickerViewDelegate {
     var backgroundTaskID : UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 0)
     let dateFormatter = DateFormatter()
         var timer = Timer()
@@ -131,7 +131,7 @@ class TimerViewController: UIViewController , UIPickerViewDelegate, {
 
         override func viewDidLoad() {
             super.viewDidLoad()
-                // 日付フォーマット
+                //日付フォーマット
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 dateFormatter.timeStyle = .short
                 dateFormatter.dateStyle = .short
