@@ -7,15 +7,33 @@
 //
 
 import UIKit
-class TimerViewController: UIViewController, UIPickerViewDelegate {
+class TimerViewController: UIViewController, UIPickerViewDelegate,backgroundTimerDelegate {
     var backgroundTaskID : UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 0)
     let dateFormatter = DateFormatter()
         var timer = Timer()
         var count = 0
         var getTime:Int!
     var label2:String!
+func checkBackground() {
+    //バックグラウンドへの移行を確認
+   
+        timerIsBackground = true
     
-    
+}
+    func setCurrentTimer(_ elapsedTime:Int) {
+        //残り時間から引数(バックグラウンドでの経過時間)を引く
+            count += elapsedTime
+        
+        //再びタイマーを起動
+        timer = Timer.scheduledTimer(timeInterval:1.0, target: self, selector: #selector(updateTimer),userInfo: nil, repeats:true)
+    }
+
+    func deleteTimer() {
+        //起動中のタイマーを破棄
+            timer.invalidate()
+        
+    }
+    var timerIsBackground = false
     @IBOutlet weak var timePicker: UIPickerView!
         @IBOutlet weak var timerLabel: UILabel!
 
@@ -87,7 +105,7 @@ class TimerViewController: UIViewController, UIPickerViewDelegate {
             let remainCount = getTime! - count
             timerLabel.text = timeString(time: TimeInterval(remainCount))
             //0秒になったら止まる
-                   if remainCount == 0 {
+                   if remainCount <= 0 {
                        timer.invalidate()
                        timerLabel.text = "00:00:00"
                        let alert: UIAlertController = UIAlertController(title: "時間終了！",message: "お疲れ様でした",preferredStyle: .alert)
@@ -129,6 +147,7 @@ class TimerViewController: UIViewController, UIPickerViewDelegate {
               return String(format: "%02d:%02d:%02d", hour, minutes, second)
           }
 
+    
         override func viewDidLoad() {
             super.viewDidLoad()
                 //日付フォーマット
@@ -136,7 +155,12 @@ class TimerViewController: UIViewController, UIPickerViewDelegate {
                 dateFormatter.timeStyle = .short
                 dateFormatter.dateStyle = .short
                 dateFormatter.locale = Locale(identifier: "ja_JP")
-                
+            //SceneDelegateを取得
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let sceneDelegate = windowScene.delegate as? SceneDelegate else {
+                        return
+            }
+                    sceneDelegate.delegate = self
                
         }
    
