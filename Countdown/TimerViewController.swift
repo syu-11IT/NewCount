@@ -34,7 +34,7 @@ func checkBackground() {
         
     }
     var timerIsBackground = false
-    @IBOutlet weak var timePicker: UIPickerView!
+    
         @IBOutlet weak var timerLabel: UILabel!
 
         @IBAction func StartButton(_ sender: Any) {
@@ -115,8 +115,8 @@ func checkBackground() {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                              // 0.5秒後に実行したい処理
                                 let storyboard: UIStoryboard = self.storyboard!
-                                let nextView = storyboard.instantiateViewController(withIdentifier: "Evaluation")
-                                self.present(nextView, animated: true, completion: nil)
+                                let nextviewController = storyboard.instantiateViewController(withIdentifier: "Evaluation")
+                                self.present(nextviewController, animated: true, completion: nil)
                              }}))
                        alert.addAction(
                         UIAlertAction(

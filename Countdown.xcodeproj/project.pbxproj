@@ -17,6 +17,7 @@
 		73C6290924D07A8B00EF736B /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C6290824D07A8B00EF736B /* TimerViewController.swift */; };
 		73E212452572641200D9AC7E /* gageup2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 73E212442572641200D9AC7E /* gageup2.mp3 */; };
 		73E212482572668800D9AC7E /* gageup2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 73E212472572668800D9AC7E /* gageup2.wav */; };
+		73E2348F25D7E20B007AAEE5 /* CellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E2348E25D7E20B007AAEE5 /* CellViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		73C6290824D07A8B00EF736B /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		73E212442572641200D9AC7E /* gageup2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gageup2.mp3; sourceTree = "<group>"; };
 		73E212472572668800D9AC7E /* gageup2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gageup2.wav; sourceTree = "<group>"; };
+		73E2348E25D7E20B007AAEE5 /* CellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				73C6290824D07A8B00EF736B /* TimerViewController.swift */,
 				73C628F824D077B300EF736B /* ViewController.swift */,
 				7313172B25C57019008D6E5E /* MemoViewController.swift */,
+				73E2348E25D7E20B007AAEE5 /* CellViewController.swift */,
 				73C628FA24D077B300EF736B /* Main.storyboard */,
 				73C628FD24D077B700EF736B /* Assets.xcassets */,
 				73C628FF24D077B700EF736B /* LaunchScreen.storyboard */,
@@ -161,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73E2348F25D7E20B007AAEE5 /* CellViewController.swift in Sources */,
 				73C6290924D07A8B00EF736B /* TimerViewController.swift in Sources */,
 				73C628F924D077B300EF736B /* ViewController.swift in Sources */,
 				7313172C25C57019008D6E5E /* MemoViewController.swift in Sources */,
