@@ -10,20 +10,28 @@ import UIKit
 class CellViewcontroller:UIViewController, UITableViewDataSource,UITableViewDelegate{
     @IBOutlet var table: UITableView!
     var hoge = [String]()
+    var huga = [String]()
+    var saveData: UserDefaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
         table.dataSource = self
+        table.delegate = self
+        hoge = saveData.object(forKey: "Title") as! [String]
+        huga = saveData.object(forKey: "Array") as! [String]
     }
     override func didReceiveMemoryWarning() {
         
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return hoge.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
-        cell?.textLabel?.text = "test"
+        let labelforTF = cell?.viewWithTag(1) as! UILabel
+        let labelforTV = cell?.viewWithTag(2) as! UILabel
+        labelforTF.text = hoge[indexPath.row]
+        labelforTV.text = huga[indexPath.row]
         return cell!
     }
     
